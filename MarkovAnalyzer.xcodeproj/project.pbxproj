@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D740062D1B62C22900EADF56 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062A1B62C22900EADF56 /* Chord.swift */; };
+		D740062E1B62C22900EADF56 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062A1B62C22900EADF56 /* Chord.swift */; };
+		D740062F1B62C22900EADF56 /* MarkovGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062B1B62C22900EADF56 /* MarkovGraph.swift */; };
+		D74006301B62C22900EADF56 /* MarkovGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062B1B62C22900EADF56 /* MarkovGraph.swift */; };
+		D74006311B62C22900EADF56 /* MusicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062C1B62C22900EADF56 /* MusicConstants.swift */; };
+		D74006321B62C22900EADF56 /* MusicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062C1B62C22900EADF56 /* MusicConstants.swift */; };
+		D74006341B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */; };
+		D74006351B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */; };
+		D7E574B01B640F9E00608D93 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574AF1B640F9E00608D93 /* MIDIManager.swift */; };
+		D7E574B21B64195800608D93 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574AF1B640F9E00608D93 /* MIDIManager.swift */; };
+		D7E574B81B65107800608D93 /* 32MbGMStereo.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = D7E574B71B65107800608D93 /* 32MbGMStereo.sf2 */; };
+		D7E574BE1B651D4700608D93 /* MIDIChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574BD1B651D4700608D93 /* MIDIChordEntryViewController.swift */; };
+		D7F0F1871B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0F1861B63BEB00042F5D7 /* ChordAnalysis.swift */; };
+		D7F0F1881B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0F1861B63BEB00042F5D7 /* ChordAnalysis.swift */; };
 		E1227B6B1B0E38170026CB4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1227B6A1B0E38170026CB4F /* AppDelegate.swift */; };
 		E1227B6D1B0E38170026CB4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1227B6C1B0E38170026CB4F /* ViewController.swift */; };
 		E1227B6F1B0E38170026CB4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1227B6E1B0E38170026CB4F /* Images.xcassets */; };
@@ -25,6 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D740062A1B62C22900EADF56 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		D740062B1B62C22900EADF56 /* MarkovGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkovGraph.swift; sourceTree = "<group>"; };
+		D740062C1B62C22900EADF56 /* MusicConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicConstants.swift; sourceTree = "<group>"; };
+		D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordEntryViewController.swift; sourceTree = "<group>"; };
+		D7E574AF1B640F9E00608D93 /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		D7E574B11B64194100608D93 /* MarkovAn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MarkovAn-Bridging-Header.h"; sourceTree = "<group>"; };
+		D7E574B71B65107800608D93 /* 32MbGMStereo.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 32MbGMStereo.sf2; sourceTree = "<group>"; };
+		D7E574BD1B651D4700608D93 /* MIDIChordEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIChordEntryViewController.swift; sourceTree = "<group>"; };
+		D7F0F1861B63BEB00042F5D7 /* ChordAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordAnalysis.swift; sourceTree = "<group>"; };
 		E1227B651B0E38170026CB4F /* MarkovAnalyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkovAnalyzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1227B691B0E38170026CB4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1227B6A1B0E38170026CB4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,9 +77,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D7E574BC1B65127900608D93 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				D7E574AF1B640F9E00608D93 /* MIDIManager.swift */,
+				D7E574B11B64194100608D93 /* MarkovAn-Bridging-Header.h */,
+			);
+			name = MIDI;
+			sourceTree = "<group>";
+		};
 		E1227B5C1B0E38170026CB4F = {
 			isa = PBXGroup;
 			children = (
+				D7E574B71B65107800608D93 /* 32MbGMStereo.sf2 */,
 				E1227B671B0E38170026CB4F /* MarkovAnalyzer */,
 				E1227B7A1B0E38170026CB4F /* MarkovAnalyzerTests */,
 				E1227B661B0E38170026CB4F /* Products */,
@@ -77,6 +110,13 @@
 			children = (
 				E1227B6A1B0E38170026CB4F /* AppDelegate.swift */,
 				E1227B6C1B0E38170026CB4F /* ViewController.swift */,
+				D7E574BD1B651D4700608D93 /* MIDIChordEntryViewController.swift */,
+				D740062A1B62C22900EADF56 /* Chord.swift */,
+				D7F0F1861B63BEB00042F5D7 /* ChordAnalysis.swift */,
+				D740062B1B62C22900EADF56 /* MarkovGraph.swift */,
+				D7E574BC1B65127900608D93 /* MIDI */,
+				D740062C1B62C22900EADF56 /* MusicConstants.swift */,
+				D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */,
 				E1227B6E1B0E38170026CB4F /* Images.xcassets */,
 				E1227B701B0E38170026CB4F /* Main.storyboard */,
 				E1227B681B0E38170026CB4F /* Supporting Files */,
@@ -153,7 +193,8 @@
 		E1227B5D1B0E38170026CB4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Existential Music";
 				TargetAttributes = {
 					E1227B641B0E38170026CB4F = {
@@ -191,6 +232,7 @@
 			files = (
 				E1227B6F1B0E38170026CB4F /* Images.xcassets in Resources */,
 				E1227B721B0E38170026CB4F /* Main.storyboard in Resources */,
+				D7E574B81B65107800608D93 /* 32MbGMStereo.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74006341B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */,
+				D740062D1B62C22900EADF56 /* Chord.swift in Sources */,
+				D7E574B01B640F9E00608D93 /* MIDIManager.swift in Sources */,
+				D7E574BE1B651D4700608D93 /* MIDIChordEntryViewController.swift in Sources */,
+				D74006311B62C22900EADF56 /* MusicConstants.swift in Sources */,
 				E1227B6D1B0E38170026CB4F /* ViewController.swift in Sources */,
+				D7F0F1871B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */,
+				D740062F1B62C22900EADF56 /* MarkovGraph.swift in Sources */,
 				E1227B6B1B0E38170026CB4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,7 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7E574B21B64195800608D93 /* MIDIManager.swift in Sources */,
+				D740062E1B62C22900EADF56 /* Chord.swift in Sources */,
+				D74006321B62C22900EADF56 /* MusicConstants.swift in Sources */,
+				D7F0F1881B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */,
+				D74006351B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */,
 				E1227B7E1B0E38170026CB4F /* MarkovAnalyzerTests.swift in Sources */,
+				D74006301B62C22900EADF56 /* MarkovGraph.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +319,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -327,10 +383,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MarkovAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExistentialMusic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -338,10 +398,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MarkovAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExistentialMusic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -360,6 +423,7 @@
 				);
 				INFOPLIST_FILE = MarkovAnalyzerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExistentialMusic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkovAnalyzer.app/Contents/MacOS/MarkovAnalyzer";
 			};
@@ -376,6 +440,7 @@
 				);
 				INFOPLIST_FILE = MarkovAnalyzerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExistentialMusic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkovAnalyzer.app/Contents/MacOS/MarkovAnalyzer";
 			};
@@ -400,6 +465,7 @@
 				E1227B831B0E38170026CB4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1227B841B0E38170026CB4F /* Build configuration list for PBXNativeTarget "MarkovAnalyzerTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +474,7 @@
 				E1227B861B0E38170026CB4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

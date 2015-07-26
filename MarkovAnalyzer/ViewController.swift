@@ -8,8 +8,12 @@
 
 import Cocoa
 
+var totalChords = 0
+
 class ViewController: NSViewController {
 
+    @IBOutlet weak var numberOfMIDISourcesTextField: NSTextField!
+    @IBOutlet weak var midiSourceListTextField: NSTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
