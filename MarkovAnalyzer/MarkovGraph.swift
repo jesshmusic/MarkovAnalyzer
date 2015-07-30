@@ -128,9 +128,16 @@ class MarkovGraph: NSObject {
     }
     
     func numberOfOccurencesForChord(chord: Chord) -> Int {
-        //  TODO: Search the chords Set and return the number of times the chord appears.
         if self.chords.contains(chord) {
             return self.chords[self.chords.indexOf(chord)!].totalOccurences
+        } else {
+            return 0
+        }
+    }
+    
+    func numberOfConnectionsForChord(chord: Chord) -> Double {
+        if self.chords.contains(chord) {
+            return self.chords[self.chords.indexOf(chord)!].totalConnections
         } else {
             return 0
         }

@@ -16,13 +16,11 @@ struct GlobalVariables {
 
 class ChordEntryViewController: NSViewController {
     
-    @IBOutlet var chordTransitionTextView: NSTextView!
-    @IBOutlet weak var chordIndexLabel: NSTextField!
-    @IBOutlet weak var nextChordLabel: NSTextField!
     @IBOutlet weak var chordTableView: NSTableView!
     @IBOutlet weak var chordEntryField: NSTextField!
     @IBOutlet weak var addChordButton: NSButton!
     @IBOutlet weak var removeChordButton: NSButton!
+    @IBOutlet var chordTransitionsTextView: NSTextView!
     
     
     var markovChain = MarkovGraph()
@@ -31,35 +29,28 @@ class ChordEntryViewController: NSViewController {
     
     
     var chords = [Chord]()
-    //    var chords = [Chord]()
-    //    var currentChord = 0
-    //    var nextChord = 0
-    //
-    //    var testChordCount = 0
+    var chordTransitionsText = ""
     
-    @IBOutlet weak var pauseButtonOutlet: NSButton!
-    @IBAction func pauseApp(sender: AnyObject) {
-        print("App paused")
-    }
     
+    //  MARK: Current Chord variables
+    
+    @IBOutlet weak var chordComboBox: NSComboBox!
+    @IBOutlet weak var romanNumeralComboBox: NSComboBox!
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
         //  Attempt to start MIDI
         self.midiManager.initMIDI()
-        
-        if self.chordEntryField.stringValue == "" {
-            self.addChordButton.enabled = false
-        }
+
         if self.chords.count == 0 {
             self.removeChordButton.enabled = false
         }
     }
     
-    private func submitChord(chordName: String) {
-        self.markovChain.putChord(Chord(chordName: chordName))
-        self.chords = markovChain.getChordProgression()
+    func submitChord(chord:Chord) {
+        self.markovChain.putChord(chord)
+        self.chords = self.markovChain.getChordProgression()
         self.addChordToTable()
         self.updateViews()
     }
@@ -70,6 +61,7 @@ class ChordEntryViewController: NSViewController {
         //  Scroll the table to the new chord
         self.chordTableView.selectRowIndexes(NSIndexSet(index: newRowIndex), byExtendingSelection: false)
         self.chordTableView.scrollRowToVisible(newRowIndex)
+        self.chordTableView.deselectRow(newRowIndex)
     }
     
     private func reloadChordTableCell(index: NSIndexSet) {
@@ -77,10 +69,9 @@ class ChordEntryViewController: NSViewController {
     }
     
     private func updateViews() {
-        self.chordTransitionTextView.string = "\(getTransitionDisplayStrings())"
-        //        numTransMatrixTextField.stringValue = "\(getTransitionDisplayStrings().numTrans)"
-        self.chordIndexLabel.integerValue = 0
-        self.nextChordLabel.integerValue = 0
+        self.chordTransitionsText = self.markovChain.displayChords()
+        self.chordTransitionsTextView.string = self.chordTransitionsText
+//        self.chordTransitionsTextView.string == self.markovChain.displayChords()
     }
     
     private func getTransitionDisplayStrings() -> String {
@@ -104,15 +95,18 @@ class ChordEntryViewController: NSViewController {
         return nil
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if GlobalVariables.debugMode {
-            pauseButtonOutlet.hidden = false
-        } else {
-            pauseButtonOutlet.hidden = true
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "MIDIChordEntry" {
+            if let midiChordEntryCtrl = segue.destinationController as? MIDIChordEntryViewController {
+                midiChordEntryCtrl.chordEntryViewController = self
+            }
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
 }
 
 extension ChordEntryViewController {
@@ -123,13 +117,11 @@ extension ChordEntryViewController {
         }
     }
     @IBAction func addChord(sender: AnyObject) {
-        self.markovChain.putChord(Chord(chordName: self.chordEntryField.stringValue))
-        self.chords = self.markovChain.getChordProgression()
-        self.addChordToTable()
+        let chordName = (self.chordEntryField.stringValue)
+        self.submitChord(Chord(chordName: chordName))
         self.chordEntryField.stringValue = ""
         self.addChordButton.enabled = false
         self.removeChordButton.enabled = true
-        self.updateViews()
     }
     
     @IBAction func removeChord(sender: AnyObject) {
@@ -151,21 +143,14 @@ extension ChordEntryViewController: NSTableViewDataSource {
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // 1
-        let cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
-        
+        let cellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! ChordCellView
         // 2
         if tableColumn!.identifier == "ChordColumn" {
             // 3
             let chordDoc = self.chords[row]
-            cellView.textField!.stringValue = chordDoc.chordName
-            return cellView
-        } else if tableColumn!.identifier == "Connections" {
-            let chordDoc = self.chords[row]
-            cellView.textField!.integerValue = Int(chordDoc.totalConnections)
-            return cellView
-        } else if tableColumn!.identifier == "Occurences" {
-            let chordDoc = self.chords[row]
-            cellView.textField!.integerValue = chordDoc.totalOccurences
+            cellView.chordNameTextField!.stringValue = chordDoc.chordName
+            cellView.romanNumberalTextField!.stringValue = chordDoc.romanNumeral
+            cellView.chordNumberTextField!.integerValue = row + 1
             return cellView
         }
         

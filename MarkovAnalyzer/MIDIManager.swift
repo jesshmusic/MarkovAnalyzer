@@ -19,32 +19,6 @@ let impNotifyProc: COpaquePointer = imp_implementationWithBlock(unsafeBitCast(mi
 let midiNotifyCallback: MIDINotifyProc = unsafeBitCast(impNotifyProc, MIDINotifyProc.self)
 
 let midiReadProc: @convention(block) (MIDIPacketList, UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void = { (packetList,readProcRefCon,srcConnRefCon) in
-    //debugPrint("MyMIDIReadBlock \(packetList)")
-    
-    //    let packets = packetList
-    //
-    //    let packet:MIDIPacket = packets.packet
-    //
-    //
-    //    var ap = UnsafeMutablePointer<MIDIPacket>.alloc(1)
-    //    ap.initialize(packet)
-    //
-    //    for _ in 0 ..< packets.numPackets {
-    //
-    //        let p = ap.memory
-    //        print("timestamp \(p.timeStamp)", appendNewline:false)
-    //        var hex = String(format:"0x%X", p.data.0)
-    //        print(" \(hex)", appendNewline:false)
-    //        hex = String(format:"0x%X", p.data.1)
-    //        print(" \(hex)", appendNewline:false)
-    //        hex = String(format:"0x%X", p.data.2)
-    //        print(" \(hex)")
-    //
-    //        MIDIManagerInstance.handle(p)
-    //
-    //        ap = MIDIPacketNext(ap)
-    //
-    //    }
     let packet = packetList.packet
     let midiStatus = packet.data.96
     let data1 = packet.data.97
@@ -86,7 +60,6 @@ class MIDIManager: NSObject {
     */
     
     func initMIDI(midiNotifier: MIDINotifyBlock? = nil, reader: MIDIReadBlock? = nil) {
-        
         if #available(OSX 10.11, *) {
             self.initMIDIForOS1011(midiNotifier, reader: reader)
         } else {
@@ -268,37 +241,38 @@ class MIDIManager: NSObject {
         }
         MusicDeviceMIDIEvent(self.samplerUnit, UInt32(status), UInt32(d1), UInt32(d2), 0)
         
-//        let rawStatus = status & 0xF0 // without channel
-//        let channel = status & 0x0F
-//        
-//        switch rawStatus {
-//            
-//        case 0x80:
-//            print("Note off. Channel \(channel) note \(d1) velocity \(d2)")
-//            // forward to sampler
-//            playNoteOff(UInt32(channel), noteNum: UInt32(d1))
-//            
-//        case 0x90:
-//            print("Note on. Channel \(channel) note \(d1) velocity \(d2)")
-//            // forward to sampler
-//            playNoteOn(UInt32(channel), noteNum:UInt32(d1), velocity: UInt32(d2))
-//            
-//        case 0xA0:
-//            print("Polyphonic Key Pressure (Aftertouch). Channel \(channel) note \(d1) pressure \(d2)")
-//        case 0xB0:
-//            print("Control Change. Channel \(channel) controller \(d1) value \(d2)")
-//            
-//        case 0xC0:
-//            print("Program Change. Channel \(channel) program \(d1)")
-//            
-//        case 0xD0:
-//            print("Channel Pressure (Aftertouch). Channel \(channel) pressure \(d1)")
-//            
-//        case 0xE0:
-//            print("Pitch Bend Change. Channel \(channel) lsb \(d1) msb \(d2)")
-//            
-//        default: print("Unhandled message \(status)")
-//        }
+        let rawStatus = status & 0xF0 // without channel
+        let channel = status & 0x0F
+        
+        switch rawStatus {
+            
+        case 0x80:
+            _ = 1
+            // forward to sampler
+            
+        case 0x90:
+            // forward to sampler
+            let notifyName = "MIDINoteNotifictation"
+            let userInfo = ["Note": Int(d1!)]
+            print("Note pressed: \(d1)")
+            NSNotificationCenter.defaultCenter().postNotificationName(notifyName, object: self, userInfo: userInfo)
+            
+        case 0xA0:
+            print("Polyphonic Key Pressure (Aftertouch). Channel \(channel) note \(d1) pressure \(d2)")
+        case 0xB0:
+            print("Control Change. Channel \(channel) controller \(d1) value \(d2)")
+            
+        case 0xC0:
+            print("Program Change. Channel \(channel) program \(d1)")
+            
+        case 0xD0:
+            print("Channel Pressure (Aftertouch). Channel \(channel) pressure \(d1)")
+            
+        case 0xE0:
+            print("Pitch Bend Change. Channel \(channel) lsb \(d1) msb \(d2)")
+            
+        default: print("Unhandled message \(status)")
+        }
         
         
     }

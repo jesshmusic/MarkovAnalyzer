@@ -143,23 +143,64 @@ class MarkovAnalyzerTests: XCTestCase {
     }
     
     func testGetChordsFromNotes() {
-        let chordAnalyzer = ChordAnalysis()
-        let testNotes1 = [Note(noteName: "C", noteNumber: 60), Note(noteName: "E", noteNumber: 52), Note(noteName: "G", noteNumber: 55)]
-        let expectedChords1 = [Chord(chordName: "C/E"), Chord(chordName: "B#/E")]
-        let testResults1 = chordAnalyzer.generateChordFromNotes(testNotes1)
-        for testResult in testResults1 {
-            print("Chord name: \(testResult.chordName)")
-        }
-        XCTAssertEqual(testResults1, expectedChords1, "FAIL")
-        
-        let testNotes2 = [Note(noteName: "C", noteNumber: 60), Note(noteName: "E", noteNumber: 52), Note(noteName: "G", noteNumber: 55), Note(noteName: "Bb", noteNumber: 70)]
-        let expectedChords2 = [Chord(chordName: "C7/E"), Chord(chordName: "B#7/E"), Chord(chordName: "GerA6/E")]
-        let testResults2 = chordAnalyzer.generateChordFromNotes(testNotes2)
-        for testResult in testResults2 {
-            print("Chord name: \(testResult.chordName)")
-        }
-        XCTAssertEqual(testResults2, expectedChords2, "FAIL")
+//        let chordAnalyzer = ChordAnalysis()
+//        let testNotes1 = [Note(noteName: "C", noteNumber: 60), Note(noteName: "E", noteNumber: 52), Note(noteName: "G", noteNumber: 55)]
+//        let expectedChords1 = [Chord(chordName: "C/E"), Chord(chordName: "B#/E")]
+//        let testResults1 = chordAnalyzer.generateChordFromNotes(testNotes1)
+//        for testResult in testResults1 {
+//            print("Chord name: \(testResult.chordName)")
+//        }
+//        XCTAssertEqual(testResults1, expectedChords1, "FAIL")
+//        
+//        let testNotes2 = [Note(noteName: "C", noteNumber: 60), Note(noteName: "E", noteNumber: 52), Note(noteName: "G", noteNumber: 55), Note(noteName: "Bb", noteNumber: 70)]
+//        let expectedChords2 = [Chord(chordName: "C7/E"), Chord(chordName: "B#7/E"), Chord(chordName: "GerA6/E")]
+//        let testResults2 = chordAnalyzer.generateChordFromNotes(testNotes2)
+//        for testResult in testResults2 {
+//            print("Chord name: \(testResult.chordName)")
+//        }
+//        XCTAssertEqual(testResults2, expectedChords2, "FAIL")
     }
+    
+//    func testChordWithMembersInit() {
+//        let chord1 = Chord(root: Note(noteNumber: 60), third: Note(noteNumber: 64), fifth: Note(noteNumber: 67), bassNote: Note(noteNumber: 52))
+//        XCTAssertEqual(chord1.enharmonicChordNames, ["C/E", "B#/E"])
+//        
+//        let chord2 = Chord(root: Note(noteNumber: 7), third: Note(noteNumber: 10), seventh: Note(noteNumber: 17), bassNote: Note(noteNumber: 7))
+//        XCTAssertEqual(chord2.enharmonicChordNames, ["Gm7"])
+//        
+//        let chord3 = Chord(root: Note(noteNumber: 7), third: Note(noteNumber: 10), ninth: Note(noteNumber: 21), bassNote: Note(noteNumber: 7))
+//        XCTAssertEqual(chord3.enharmonicChordNames, ["Gm9"])
+//        
+//        let chord4 = Chord(root: Note(noteNumber: 6), third: Note(noteNumber: 9), fifth: Note(noteNumber: 12), seventh: Note(noteNumber: 15), bassNote: Note(noteNumber: 9))
+//        XCTAssertEqual(chord4.enharmonicChordNames, ["F#dim(b7)/A", "Gbdim(b7)/A"])
+//        
+//        let chord5 = Chord(root: Note(noteNumber: 8), third: Note(noteNumber: 12), fifth: Note(noteNumber: 15), sixth: Note(noteNumber: 18), bassNote: Note(noteNumber: 8))
+//        XCTAssertEqual(chord5.enharmonicChordNames, ["AbGermanA6", "G#GermanA6"])
+//        
+//        let chord6 = Chord(root: Note(noteNumber: 8), third: Note(noteNumber: 12), fourth: Note(noteNumber: 14), sixth: Note(noteNumber: 18), bassNote: Note(noteNumber: 8))
+//        XCTAssertEqual(chord6.enharmonicChordNames, ["AbFrenchA6", "G#FrenchA6"])
+//    }
+    
+    func testStackInThirds() {
+        let chord1 = Chord(notes: [Note(noteNumber: 62), Note(noteNumber: 54), Note(noteNumber: 69)])
+        XCTAssertEqual(chord1.enharmonicChordNames, ["D/F#", "Ebb/Gb"])
+        let chord2 = Chord(notes: [Note(noteNumber: 74), Note(noteNumber: 77), Note(noteNumber: 64), Note(noteNumber: 60)])
+        XCTAssertEqual(chord2.enharmonicChordNames, ["C11", "B#11"])
+        let chord3 = Chord(notes: [Note(noteNumber: 74), Note(noteNumber: 77), Note(noteNumber: 52), Note(noteNumber: 60)])
+        XCTAssertEqual(chord3.enharmonicChordNames, ["C11/E", "B#11/D##"])
+        let chord4 = Chord(notes: [Note(noteNumber: 69), Note(noteNumber: 73), Note(noteNumber: 65)])
+        XCTAssertEqual(chord4.enharmonicChordNames, ["F+", "E#+"])
+        let chord5 = Chord(notes: [Note(noteNumber: 62), Note(noteNumber: 68), Note(noteNumber: 78), Note(noteNumber: 84)])
+        XCTAssertEqual(chord5.enharmonicChordNames, ["Ddim(no 3rd)(b11)", "Ebbdim(no 3rd)(b11)", "DFre+6", "EbbFre+6", "AbFre+6", "G#Fre+6"])
+        let chord5a = Chord(notes: [Note(noteNumber: 62), Note(noteNumber: 68), Note(noteNumber: 78), Note(noteNumber: 72)])
+        print("Chord5a: \(chord5a.chordDescription())")
+        XCTAssertEqual(chord5a.enharmonicChordNames, ["Ddim(no 3rd)(b11)", "Ebbdim(no 3rd)(b11)", "DFre+6", "EbbFre+6", "AbFre+6", "G#Fre+6"])
+        let chord6 = Chord(notes: [Note(noteNumber: 24), Note(noteNumber: 28), Note(noteNumber: 30), Note(noteNumber: 34)])
+        XCTAssertEqual(chord6.enharmonicChordNames, ["F#dim(no 3rd)(b11)/C", "Gbdim(no 3rd)(b11)/B#", "F#Fre+6", "GbFre+6", "CFre+6", "B#Fre+6"])
+        print("Chord6: \(chord6.chordDescription())")
+    }
+    
+
     
     //    func testPerformanceExample() {
     //        // This is an example of a performance test case.
