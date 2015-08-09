@@ -10,27 +10,23 @@ import Cocoa
 
 class Chord: Hashable {
     
-    
     var chordConnections: [Chord: Int]!
     var totalOccurences: Int = 1
     var totalConnections: Double = 0.0
     internal private(set) var chordName: String = "N/A"
-    internal private(set) var baseChordName: String = "N/A"
-    internal private(set) var baseChordNames = [String]()
-    internal private(set) var chordSuffix: String = ""
     internal private(set) var enharmonicChordNames = [String]()
-    internal private(set) var romanNumeral: String = "I"
-    internal private(set) var selectedChordIndex: Int = 0
+    var romanNumeral: String = "I"
+    var keySig: KeySignature = KeySignature(keyName: "C major")
     
-    var root: Note!
-    var third: Note?
-    var fifth: Note?
-    var seventh: Note?
-    var ninth: Note?
-    var eleventh: Note?
-    var thirteenth: Note?
+    internal private(set) var root: Note!
+    internal private(set) var third: Note?
+    internal private(set) var fifth: Note?
+    internal private(set) var seventh: Note?
+    internal private(set) var ninth: Note?
+    internal private(set) var eleventh: Note?
+    internal private(set) var thirteenth: Note?
     
-    var bass: Note!
+    internal private(set) var bass: Note!
     
     
     //  Note values
@@ -44,8 +40,7 @@ class Chord: Hashable {
         ninth: Note? = nil,
         eleventh: Note? = nil,
         thirteenth: Note? = nil,
-        bassNote: Note,
-        chordName: String? = nil)
+        bassNote: Note)
     {
         self.root = root
         self.third = third
@@ -56,12 +51,8 @@ class Chord: Hashable {
         self.thirteenth = thirteenth
         self.bass = bassNote
         self.chordConnections = [Chord: Int]()
-        if chordName == nil {
-            self.setChordNameFromMembers()
-        } else {
-            self.chordName = chordName!
-            self.setEnharmonicChordNames()
-        }
+        self.setChordNameFromMembers()
+
     }
     
     init(notes: [Note]) {
@@ -79,21 +70,21 @@ class Chord: Hashable {
         self.chordConnections = [Chord: Int]()
     }
     
-    init(chordName: String, romanNumeral: String? = nil) {
-        self.chordName = chordName
-        if romanNumeral != nil {
-            self.romanNumeral = romanNumeral!
-        }
-        self.chordConnections = [Chord: Int]()
-    }
+//    init(chordName: String, romanNumeral: String? = nil) {
+//        self.chordName = chordName
+//        if romanNumeral != nil {
+//            self.romanNumeral = romanNumeral!
+//        }
+//        self.chordConnections = [Chord: Int]()
+//    }
     
     var hashValue: Int {
         return self.chordName.hashValue
     }
     
-    func selectEnharmonic(index: Int) {
-        if index < self.enharmonicChordNames.count {
-            self.chordName = self.enharmonicChordNames[index]
+    func selectEnharmonic(chordName: String) {
+        if let selectedEnharmonicIndex = self.enharmonicChordNames.indexOf(chordName) {
+            self.chordName = self.enharmonicChordNames[selectedEnharmonicIndex]
         }
     }
     
@@ -138,7 +129,11 @@ class Chord: Hashable {
             case 13, 14, 15:
                 self.ninth = self.chordMembers[self.chordMembers.indexOf(note)!]
             case 16, 17, 18:
-                self.eleventh = self.chordMembers[self.chordMembers.indexOf(note)!]
+                if self.third == nil && interval == 16 {
+                    self.third = self.chordMembers[self.chordMembers.indexOf(note)!]
+                } else {
+                    self.eleventh = self.chordMembers[self.chordMembers.indexOf(note)!]
+                }
             default:
                 self.thirteenth = self.chordMembers[self.chordMembers.indexOf(note)!]
             }
@@ -148,7 +143,6 @@ class Chord: Hashable {
     
     
     private func setChordNameFromMembers() {
-        self.chordName = self.root.noteName
         var suffix = ""
         let rootNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.root)!].noteNumber
         var thirdNoteNumber: Int!
@@ -157,7 +151,7 @@ class Chord: Hashable {
         var ninthNoteNumber: Int!
         var eleventhNoteNumber: Int!
         var thirteenthNoteNumber: Int!
-        
+        var baseChordNames = [String]()
         //  Create suffix for triad
         if self.third != nil {
             thirdNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.third!)!].noteNumber
@@ -165,35 +159,42 @@ class Chord: Hashable {
                 fifthNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.fifth!)!].noteNumber
                 if ((thirdNoteNumber - rootNoteNumber == 3) && (fifthNoteNumber - rootNoteNumber == 7)) {
                     suffix = suffix + "m"
-                    self.createBaseChordNames(suffix)
-                } else if ((thirdNoteNumber - rootNoteNumber == 3) && (fifthNoteNumber - rootNoteNumber == 6)){
+                    baseChordNames = self.createBaseChordNames(suffix)
+                } else if ((thirdNoteNumber - rootNoteNumber == 3) && (fifthNoteNumber - rootNoteNumber == 6)) {
                     suffix = suffix + "dim"
-                    self.createBaseChordNames(suffix)
+                    baseChordNames = self.createBaseChordNames(suffix)
                 } else if ((thirdNoteNumber - rootNoteNumber == 4) && (fifthNoteNumber - rootNoteNumber == 8)) {
                     suffix = suffix + "+"
-                    self.createBaseChordNames(suffix)
+                    baseChordNames = self.createBaseChordNames(suffix)
+                } else if ((thirdNoteNumber - rootNoteNumber == 16) && (fifthNoteNumber - rootNoteNumber == 6) && self.seventh != nil) {
+                    if self.seventh!.noteNumber - rootNoteNumber == 10 {
+                        suffix = "7b5"
+                    } else if self.seventh!.noteNumber - rootNoteNumber == 11 {
+                        suffix = "maj7b5"
+                    }
+                    baseChordNames = self.createBaseChordNames("")
                 } else {
-                    self.createBaseChordNames("")
+                    baseChordNames = self.createBaseChordNames("")
                 }
             } else {
                 if thirdNoteNumber - rootNoteNumber == 3 {
                     suffix = suffix + "m"
-                    self.createBaseChordNames(suffix)
+                    baseChordNames = self.createBaseChordNames(suffix)
                 } else {
-                    self.createBaseChordNames("")
+                    baseChordNames = self.createBaseChordNames("")
                 }
             }
         } else if self.fifth != nil {
             fifthNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.fifth!)!].noteNumber
             if fifthNoteNumber - rootNoteNumber == 7 {
                 suffix = suffix + "5"
-                self.createBaseChordNames("")
+                baseChordNames = self.createBaseChordNames("")
             } else if fifthNoteNumber - rootNoteNumber == 6 {
                 suffix = suffix + "dim"
-                self.createBaseChordNames(suffix)
+                baseChordNames = self.createBaseChordNames(suffix)
             }
         } else {
-            self.createBaseChordNames("")
+            baseChordNames = self.createBaseChordNames("")
         }
         //  Suffix could be : "", m, dim, +, 5
         
@@ -215,6 +216,10 @@ class Chord: Hashable {
                     suffix = "7b5"
                 case "5":
                     suffix = "7"
+                case "7b5":
+                    suffix = "7b5"
+                case "maj7b5":
+                    suffix = "maj7b5"
                 default:
                     suffix = suffix + "7"
                 }
@@ -236,7 +241,33 @@ class Chord: Hashable {
         if self.ninth != nil {
             ninthNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.ninth!)!].noteNumber
             if ninthNoteNumber - rootNoteNumber == 13 {
-                suffix = suffix + "b9"
+                switch suffix {
+                case "", "5":
+                    suffix = "addb9"
+                case "m" :
+                    suffix = "m(b9)"
+                case "dim" :
+                    suffix = "dim(b9)"
+                case "+" :
+                    suffix = "+(b9)"
+                case "maj7":
+                    suffix = "maj7(b9)"
+                case "dim7":
+                    suffix = "dim(b9)"
+                case "7":
+                    suffix = "(b9)"
+                case "m(maj7)":
+                    suffix = "mb9(maj7)"
+                case "dim(maj7)":
+                    suffix = "dimb9(maj7)"
+                case "m7":
+                    suffix = "m7(b9)"
+                case "7b5":
+                    suffix = "7b5(b9)"
+                default:
+                    suffix = suffix + "b9"
+                }
+//                suffix = suffix + "b9"
             } else if ninthNoteNumber - rootNoteNumber == 14 {
                 switch suffix {
                 case "", "5":
@@ -265,18 +296,119 @@ class Chord: Hashable {
                     suffix = suffix + "9"
                 }
             } else if ninthNoteNumber - rootNoteNumber == 15 {
-                suffix = suffix + "#9"
+                switch suffix {
+                case "", "5":
+                    suffix = "add#9"
+                case "m" :
+                    suffix = "m(add#9)"
+                case "dim" :
+                    suffix = "dim(add#9)"
+                case "+" :
+                    suffix = "+(add#9)"
+                case "maj7":
+                    suffix = "maj7(#9)"
+                case "dim7":
+                    suffix = "dim(#9)"
+                case "7":
+                    suffix = "(#9)"
+                case "m(maj7)":
+                    suffix = "m#9(maj7)"
+                case "dim(maj7)":
+                    suffix = "dim#9(maj7)"
+                case "m7":
+                    suffix = "m7(#9)"
+                case "7b5":
+                    suffix = "7b5(#9)"
+                default:
+                    suffix = suffix + "#9"
+                }
+//                suffix = suffix + "#9"
             }
         }
+        //  Suffix could be: "", m, dim, +, 5, dim7, b7, mb7, +b7, 7b5, 7, m7, +7, m(maj7), dim(maj7), maj7, +maj7, add9, m(add9), dim(add9), +(add9), maj9, dim9, 9, m9(maj7), dim9(maj7), m9, m9b5
         if self.eleventh != nil {
             eleventhNoteNumber = self.stackedChordMembers[self.stackedChordMembers.indexOf(self.eleventh!)!].noteNumber
-            if eleventhNoteNumber - rootNoteNumber == 17 {
-                
-                suffix = suffix + "(b11)"
-            } else if eleventhNoteNumber - rootNoteNumber == 18 && self.thirteenth == nil {
-                suffix = suffix + "11"
-            } else if eleventhNoteNumber - rootNoteNumber == 19 {
-                suffix = suffix + "#11"
+            if eleventhNoteNumber - rootNoteNumber == 16 {
+                switch suffix {
+                case "", "5":
+                    suffix = "addb11"
+                case "m" :
+                    suffix = "m(addb11)"
+                case "dim" :
+                    suffix = "dim(addb11)"
+                case "+" :
+                    suffix = "+(addb11)"
+                case "maj9":
+                    suffix = "majb11"
+                case "dim9":
+                    suffix = "dim(b11)"
+                case "9":
+                    suffix = "(b11)"
+                case "m9(maj7)":
+                    suffix = "m b11(maj7)"
+                case "dim9(maj7)":
+                    suffix = "dim b11(maj7)"
+                case "m9":
+                    suffix = "m b11"
+                case "m9b5":
+                    suffix = "m b11b5"
+                default:
+                    suffix = suffix + "(b11)"
+                }
+            } else if eleventhNoteNumber - rootNoteNumber == 17 {
+                switch suffix {
+                case "", "5":
+                    suffix = "add11"
+                case "m" :
+                    suffix = "m(add11)"
+                case "dim" :
+                    suffix = "dim(add11)"
+                case "+" :
+                    suffix = "+(add11)"
+                case "maj9":
+                    suffix = "maj11"
+                case "dim9":
+                    suffix = "dim11"
+                case "9":
+                    suffix = "11"
+                case "m9(maj7)":
+                    suffix = "m11(maj7)"
+                case "dim9(maj7)":
+                    suffix = "dim11(maj7)"
+                case "m9":
+                    suffix = "m11"
+                case "m9b5":
+                    suffix = "m11b5"
+                default:
+                    suffix = suffix + "(add11)"
+                }
+            } else if eleventhNoteNumber - rootNoteNumber == 18 {
+                switch suffix {
+                case "", "5":
+                    suffix = "add#11"
+                case "m" :
+                    suffix = "m(add#11)"
+                case "dim" :
+                    suffix = "dim(add#11)"
+                case "+" :
+                    suffix = "+(add#11)"
+                case "maj9":
+                    suffix = "maj#11"
+                case "dim9":
+                    suffix = "dim#11"
+                case "9":
+                    suffix = "(#11)"
+                case "m9(maj7)":
+                    suffix = "m#11(maj7)"
+                case "dim9(maj7)":
+                    suffix = "dim#11(maj7)"
+                case "m9":
+                    suffix = "m#11"
+                case "m9b5":
+                    suffix = "m#11b5"
+                default:
+                    suffix = suffix + "(add#11)"
+                }
             }
         }
         if self.thirteenth != nil {
@@ -289,58 +421,61 @@ class Chord: Hashable {
                 suffix = suffix + "(#13)"
             }
         }
-        self.chordSuffix = suffix
-        self.appendChordName(suffix)
+        self.appendChordName(suffix, baseChordNames: baseChordNames)
     }
     
-    private func createBaseChordNames(suffix: String) {
-        self.baseChordName = self.root.noteName + suffix
+    private func createBaseChordNames(suffix: String) -> [String] {
+        var baseChordNames = [String]()
         for index in 0..<2 {
             let rootNoteName = self.root.enharmonicNoteNames[index]
-            self.baseChordNames.append(rootNoteName + suffix)
+            baseChordNames.append(rootNoteName + suffix)
         }
+        return baseChordNames
     }
     
-    private func appendChordName(suffix: String) {
-        self.chordName = self.chordName + suffix
-        if self.bass.noteName != self.root.noteName {
-            self.chordName = "\(self.chordName)/\(self.bass.noteName)"
-        }
-        self.setEnharmonicChordNames()
+    private func appendChordName(suffix: String, baseChordNames: [String]) {
+        self.setEnharmonicChordNames(suffix, baseChordNames: baseChordNames)
+        self.chordName = self.enharmonicChordNames[0]
     }
     
-    private func setEnharmonicChordNames() {
-        print("Base chord names: \(self.baseChordNames)")
+    private func setEnharmonicChordNames(chordSuffix: String, var baseChordNames: [String]) {
         for index in 0..<2 {
-            self.enharmonicChordNames.append("\(self.root.enharmonicNoteNames[index])\(self.chordSuffix)")
+            self.enharmonicChordNames.append("\(self.root.enharmonicNoteNames[index])\(chordSuffix)")
         }
-        if self.chordSuffix == "7" && self.fifth != nil {
+        if chordSuffix == "7" && self.fifth != nil {
             for index in 0..<2 {
-                self.enharmonicChordNames.append("\(self.root.enharmonicNoteNames[index])(Ger+6)")
-                self.baseChordNames.append(self.baseChordNames[index])
+                self.addEnharmonicChordName("\(self.root.enharmonicNoteNames[index])(Ger+6)")
+                baseChordNames.append(baseChordNames[index])
             }
-        } else if self.chordSuffix == "7" && self.fifth == nil {
+        } else if chordSuffix == "7" && self.fifth == nil {
             for index in 0..<2 {
-                self.enharmonicChordNames.append("\(self.root.enharmonicNoteNames[index])(It+6)")
-                self.baseChordNames.append(self.baseChordNames[index])
+                self.addEnharmonicChordName("\(self.root.enharmonicNoteNames[index])(It+6)")
+                baseChordNames.append(baseChordNames[index])
             }
-        } else if self.chordSuffix == "dim(no 3rd)(b11)" {  //  TODO: This needs to be updated still.
+        } else if chordSuffix == "7b5" {
             
-            for enharmonicNoteName in self.root.enharmonicNoteNames {
-                self.enharmonicChordNames.append("\(enharmonicNoteName)(Fre+6)")
+            for index in 0..<2 {
+                self.addEnharmonicChordName("\(self.root.enharmonicNoteNames[index])(Fre+6)")
+                baseChordNames.append(self.root.enharmonicNoteNames[index])
             }
-            for enharmonicNoteName in self.fifth!.enharmonicNoteNames {
-                self.enharmonicChordNames.append("\(enharmonicNoteName)(Fre+6)")
+            for index in 0..<2 {
+                self.addEnharmonicChordName("\(self.fifth!.enharmonicNoteNames[index])(Fre+6)")
+                baseChordNames.append(self.fifth!.enharmonicNoteNames[index])
             }
         }
-        print("Enharmonic chord names: \(self.enharmonicChordNames)")
-        self.addBassNote()
+        self.addBassNote(baseChordNames)
     }
     
-    private func addBassNote() {
+    private func addEnharmonicChordName(enChordName: String) {
+        if !self.enharmonicChordNames.contains(enChordName) {
+            self.enharmonicChordNames.append(enChordName)
+        }
+    }
+    
+    private func addBassNote(baseChordNames: [String]) {
         let slash = "/"
         var bassNoteIndex = [Int]()
-        for baseChordName in self.baseChordNames {
+        for baseChordName in baseChordNames {
             bassNoteIndex.append(self.getBassNoteIndexForChordBase(baseChordName))
         }
         for index in 0..<self.enharmonicChordNames.count {
@@ -353,19 +488,18 @@ class Chord: Hashable {
     }
     
     private func getBassNoteIndexForChordBase(baseChord: String) -> Int {
+        print("Base chord: \(baseChord)")
         switch baseChord {
-        case "C", "Cm", "Db", "Dm", "Eb", "F", "Fm", "Gb", "Gm", "Ab", "Bb":
+        case "C", "Cm", "Cdim", "Db", "Dm", "Ddim", "Eb", "F", "Fm", "Fdim", "Gb", "Gm", "Gdim", "Ab", "Bb":
             return 0
-        case "D", "E", "G", "A", "B", "C#m", "Em", "F#m", "G#m":
+        case "D", "E", "G", "A", "B", "Bm", "C#m", "Em", "F#m", "G#m", "Am", "C+", "D+", "F+", "G+":
             return 1
-        case "Ebm", "Gbm", "Abm", "Bbm":
+        case "Ebm", "Ebdim", "Gbm", "Gbdim", "Abm", "Abdim", "Bbm", "Bbdim":
             return 2
         default:
             return 3
         }
     }
-    
-    //  TODO: get all possible Roman numerals?
     
     func hasChordConnectionToChord(chord: Chord) -> Bool {
         var retVal = false

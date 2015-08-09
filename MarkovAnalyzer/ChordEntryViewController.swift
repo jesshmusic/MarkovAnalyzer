@@ -29,6 +29,7 @@ class ChordEntryViewController: NSViewController {
     
     
     var chords = [Chord]()
+    var currentKeySig: KeySignature = kCMajor
     var chordTransitionsText = ""
     
     
@@ -46,6 +47,7 @@ class ChordEntryViewController: NSViewController {
         if self.chords.count == 0 {
             self.removeChordButton.enabled = false
         }
+        self.currentKeySig = kCMajor
     }
     
     func submitChord(chord:Chord) {
@@ -99,6 +101,7 @@ class ChordEntryViewController: NSViewController {
         if segue.identifier == "MIDIChordEntry" {
             if let midiChordEntryCtrl = segue.destinationController as? MIDIChordEntryViewController {
                 midiChordEntryCtrl.chordEntryViewController = self
+                midiChordEntryCtrl.currentKeySig = self.currentKeySig
             }
         }
     }
@@ -117,11 +120,11 @@ extension ChordEntryViewController {
         }
     }
     @IBAction func addChord(sender: AnyObject) {
-        let chordName = (self.chordEntryField.stringValue)
-        self.submitChord(Chord(chordName: chordName))
-        self.chordEntryField.stringValue = ""
-        self.addChordButton.enabled = false
-        self.removeChordButton.enabled = true
+//        let chordName = (self.chordEntryField.stringValue)
+//        self.submitChord(Chord(chordName: chordName))
+//        self.chordEntryField.stringValue = ""
+//        self.addChordButton.enabled = false
+//        self.removeChordButton.enabled = true
     }
     
     @IBAction func removeChord(sender: AnyObject) {
@@ -151,6 +154,7 @@ extension ChordEntryViewController: NSTableViewDataSource {
             cellView.chordNameTextField!.stringValue = chordDoc.chordName
             cellView.romanNumberalTextField!.stringValue = chordDoc.romanNumeral
             cellView.chordNumberTextField!.integerValue = row + 1
+            cellView.keySignatureTextField!.stringValue = chordDoc.keySig.keyName
             return cellView
         }
         

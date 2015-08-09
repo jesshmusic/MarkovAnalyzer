@@ -13,22 +13,28 @@ class MIDIChordEntryViewController: NSViewController {
     @IBOutlet weak var notesPlayedTextField: NSTextField!
     @IBOutlet weak var possibleChordsPopUp: NSPopUpButton!
     @IBOutlet weak var doneButton: NSButton!
-    @IBOutlet weak var customChordNameTextField: NSTextField!
-    @IBOutlet weak var romanNumeralComboBox: NSComboBox!
     @IBOutlet weak var clearNotesButton: NSButton!
+    @IBOutlet weak var romanNumeralComboBox: NSComboBox!
+    @IBOutlet weak var keySigPopup: NSPopUpButton!
     
     private var notes: [Note]!
-    private var romanNumerals: [String]!
     private var chordResult: Chord!
-//    private var chordResult: String!
-    private var chordOptions: [String]!
-    private var chordResultNames: [String]!
+    private var romanNumeralResult: String!
+    var currentKeySig: KeySignature!
     var chordEntryViewController: ChordEntryViewController!
+    
+    private let keySigs = [kCMajor, kCSharpMajor, kDFlatMajor, kDMajor, kDSharpMajor, kEFlatMajor, kEMajor, kFMajor, kFSharpMajor,
+        kGFlatMajor, kGMajor, kGSharpMajor, kAFlatMajor, kAMajor, kASharpMajor, kBFlatMajor, kBMajor, kCFlatMajor,
+        kCMinor, kCSharpMinor, kDFlatMinor, kDMinor, kDSharpMinor, kEFlatMinor, kEMinor, kFMinor, kFSharpMinor,
+        kGFlatMinor, kGMinor, kGSharpMinor, kAFlatMinor, kAMinor, kASharpMinor, kBFlatMinor, kBMinor]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        self.romanNumerals = [
+        
+        self.possibleChordsPopUp.removeAllItems()
+        self.possibleChordsPopUp.enabled = false
+        let romanNumerals = [
             "none",
             "I", "I6", "I64", "I7", "I65", "I43", "I42",
             "ii", "ii6", "ii64", "ii7", "ii65", "ii43", "ii42",
@@ -50,13 +56,15 @@ class MIDIChordEntryViewController: NSViewController {
             "It6", "Ger6", "Fr6"
         ]
         self.romanNumeralComboBox.removeAllItems()
-        self.romanNumeralComboBox.addItemsWithObjectValues(self.romanNumerals)
+        self.romanNumeralComboBox.addItemsWithObjectValues(romanNumerals)
         self.romanNumeralComboBox.selectItemAtIndex(0)
+        self.romanNumeralResult = self.romanNumeralComboBox.selectedCell()?.stringValue
         
-        self.possibleChordsPopUp.removeAllItems()
-        self.possibleChordsPopUp.enabled = false
-        
-        self.customChordNameTextField.enabled = false
+        self.keySigPopup.removeAllItems()
+        for keySig in self.keySigs {
+            self.keySigPopup.addItemWithTitle(keySig.keyName)
+        }
+        self.keySigPopup.selectItemAtIndex(keySigs.indexOf(self.currentKeySig)!)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleMIDI:", name: "MIDINoteNotifictation", object: nil)
     }
@@ -87,36 +95,47 @@ class MIDIChordEntryViewController: NSViewController {
     
     func getChord() {
         if self.notes != nil && self.notes.count > 0 {
-            let chord = Chord(notes: self.notes)
-            var chords = [String]()
-            for nextChordName in chord.enharmonicChordNames {
-                chords.append(nextChordName)
+            self.chordResult = Chord(notes: self.notes)
+            var chordNames = [String]()
+            for nextChordName in self.chordResult.enharmonicChordNames {
+                chordNames.append(nextChordName)
             }
-            self.chordResultNames = chords
-            print(chord.chordDescription())
-            self.populatePossibleChords()
+            print(self.chordResult.chordDescription())
+            self.populatePossibleChordsAndRoman(chordNames)
         }
     }
     
-    private func populatePossibleChords() {
+    private func populatePossibleChordsAndRoman(chordNames: [String]) {
         self.possibleChordsPopUp.removeAllItems()
-        for nextResult in self.chordResultNames {
+        for nextResult in chordNames {
             self.possibleChordsPopUp.addItemWithTitle(nextResult)
         }
         self.possibleChordsPopUp.selectItemAtIndex(0)
-        self.chordResult = self.possibleChordsPopUp.selectedItem?.title
+        if let chordResultTitle = self.possibleChordsPopUp.selectedItem?.title {
+            self.chordResult.selectEnharmonic(chordResultTitle)
+        }
+
     }
     @IBAction func setResult(sender: AnyObject) {
-        self.chordResult = self.possibleChordsPopUp.selectedItem?.title
+        let chordResultTitle = self.possibleChordsPopUp.selectedItem?.title
+        self.chordResult.selectEnharmonic(chordResultTitle!)
     }
     
-    @IBAction func selectChord(sender: AnyObject) {
-        if self.possibleChordsPopUp.selectedItem == 0 {
-            self.customChordNameTextField.enabled = true
-        } else {
-            self.customChordNameTextField.enabled = false
-        }
+    @IBAction func selectRomanNumeral(sender: AnyObject) {
+
+        self.romanNumeralResult = self.romanNumeralComboBox.selectedCell()?.stringValue
     }
+    
+    @IBAction func selectKeySig(sender: AnyObject) {
+        self.currentKeySig = self.keySigs[self.keySigPopup.indexOfSelectedItem]
+    }
+//    @IBAction func selectChord(sender: AnyObject) {
+//        if self.possibleChordsPopUp.selectedItem == 0 {
+//            self.customChordNameTextField.enabled = true
+//        } else {
+//            self.customChordNameTextField.enabled = false
+//        }
+//    }
     
     @IBAction func clearNotes(sender: AnyObject) {
         if self.notes != nil {
@@ -131,10 +150,11 @@ class MIDIChordEntryViewController: NSViewController {
     }
     
     @IBAction func doneEnteringChord(sender: AnyObject) {
-        //  TEST
         if self.chordResult != nil {
-            let chord = Chord(chordName: (self.possibleChordsPopUp.selectedItem?.title)!, romanNumeral: self.romanNumeralComboBox.selectedCell()?.title)
-            self.chordEntryViewController.submitChord(chord)
+            self.chordResult.romanNumeral = self.romanNumeralResult
+            self.chordResult.keySig = self.currentKeySig
+            self.chordEntryViewController.submitChord(self.chordResult)
+            self.chordEntryViewController.currentKeySig = self.currentKeySig
         }
         NSNotificationCenter.defaultCenter().removeObserver(self)
         self.dismissController(nil)

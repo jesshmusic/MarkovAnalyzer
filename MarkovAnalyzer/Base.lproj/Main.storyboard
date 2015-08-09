@@ -645,17 +645,17 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MarkovAnalyzer" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="47" y="-487"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="Chord Progression" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="714" y="254" width="1000" height="1000"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                         <value key="minSize" type="size" width="600" height="600"/>
                         <value key="maxSize" type="size" width="1500" height="1500"/>
                     </window>
@@ -706,22 +706,6 @@
                                                             <rect key="frame" x="1" y="1" width="321" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wn8-OK-7pB">
-                                                                    <rect key="frame" x="37" y="25" width="42" height="14"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Chord:" id="hQi-vg-zdR">
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yQs-R0-KU5">
-                                                                    <rect key="frame" x="37" y="3" width="148" height="14"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roman Numeral Analysis:" id="Ff6-15-q6z">
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9fV-Qz-4wK">
                                                                     <rect key="frame" x="233" y="25" width="87" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Chord Name" id="yAq-7T-3kT">
@@ -731,8 +715,8 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-V6-2Hz">
-                                                                    <rect key="frame" x="216" y="3" width="104" height="17"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roman Numeral" placeholderString="" id="Hv5-Pu-hhN">
+                                                                    <rect key="frame" x="238" y="3" width="82" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roman Num" placeholderString="" id="Hv5-Pu-hhN">
                                                                         <font key="font" size="15" name="TimesNewRomanPSMT"/>
                                                                         <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -746,22 +730,67 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wn8-OK-7pB">
+                                                                    <rect key="frame" x="187" y="25" width="42" height="14"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Chord:" id="hQi-vg-zdR">
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yQs-R0-KU5">
+                                                                    <rect key="frame" x="131" y="3" width="98" height="14"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roman Numeral:" id="Ff6-15-q6z">
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="bezel" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1hj-26-loM">
+                                                                    <rect key="frame" x="23" y="3" width="102" height="40"/>
+                                                                    <view key="contentView" id="fZD-zL-Aig">
+                                                                        <rect key="frame" x="1" y="1" width="100" height="38"/>
+                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        <subviews>
+                                                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="72N-32-mKh">
+                                                                                <rect key="frame" x="17" y="10" width="66" height="18"/>
+                                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="C major" id="CX9-kg-0ve">
+                                                                                    <font key="font" size="16" name="TimesNewRomanPS-BoldMT"/>
+                                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                </textFieldCell>
+                                                                            </textField>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="72N-32-mKh" firstAttribute="centerY" secondItem="fZD-zL-Aig" secondAttribute="centerY" id="IEJ-EP-2d1"/>
+                                                                            <constraint firstItem="72N-32-mKh" firstAttribute="centerX" secondItem="fZD-zL-Aig" secondAttribute="centerX" id="a4Y-Zd-2x7"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                    <color key="fillColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                                                </box>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="1hj-26-loM" firstAttribute="leading" secondItem="PiP-rc-x4A" secondAttribute="trailing" constant="8" id="0xA-04-UIf"/>
                                                                 <constraint firstItem="9fV-Qz-4wK" firstAttribute="top" secondItem="yOU-uE-vRK" secondAttribute="top" constant="4" id="5zM-XX-uls"/>
-                                                                <constraint firstItem="Wn8-OK-7pB" firstAttribute="leading" secondItem="yOU-uE-vRK" secondAttribute="leading" constant="39" id="DN2-t2-CVE"/>
+                                                                <constraint firstItem="1hj-26-loM" firstAttribute="top" secondItem="yOU-uE-vRK" secondAttribute="top" constant="3" id="9PF-up-bBm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Moc-V6-2Hz" secondAttribute="trailing" constant="3" id="F4R-Ta-E9f"/>
                                                                 <constraint firstItem="Moc-V6-2Hz" firstAttribute="top" secondItem="yOU-uE-vRK" secondAttribute="top" constant="26" id="KWJ-Pi-Dmr"/>
                                                                 <constraint firstItem="PiP-rc-x4A" firstAttribute="leading" secondItem="yOU-uE-vRK" secondAttribute="leading" constant="3" id="WAG-O6-pJh"/>
                                                                 <constraint firstItem="Wn8-OK-7pB" firstAttribute="top" secondItem="yOU-uE-vRK" secondAttribute="top" constant="7" id="WBq-sV-eFP"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1hj-26-loM" secondAttribute="bottom" constant="3" id="ZzF-Zd-guv"/>
                                                                 <constraint firstItem="PiP-rc-x4A" firstAttribute="centerY" secondItem="yOU-uE-vRK" secondAttribute="centerY" id="a8R-4y-5My"/>
                                                                 <constraint firstItem="yQs-R0-KU5" firstAttribute="top" secondItem="yOU-uE-vRK" secondAttribute="top" constant="29" id="gd0-VG-giQ"/>
-                                                                <constraint firstItem="yQs-R0-KU5" firstAttribute="leading" secondItem="yOU-uE-vRK" secondAttribute="leading" constant="39" id="ls3-il-JdA"/>
                                                                 <constraint firstAttribute="trailing" secondItem="9fV-Qz-4wK" secondAttribute="trailing" constant="3" id="rbO-FG-o8d"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1hj-26-loM" secondAttribute="trailing" constant="196" id="usr-vx-g2b"/>
+                                                                <constraint firstItem="9fV-Qz-4wK" firstAttribute="leading" secondItem="Wn8-OK-7pB" secondAttribute="trailing" constant="8" id="xnq-zA-m8c"/>
+                                                                <constraint firstItem="Moc-V6-2Hz" firstAttribute="leading" secondItem="yQs-R0-KU5" secondAttribute="trailing" constant="13" id="yRT-xU-dkz"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="chordNameTextField" destination="9fV-Qz-4wK" id="VIF-vf-NGj"/>
                                                                 <outlet property="chordNumberTextField" destination="PiP-rc-x4A" id="jpJ-dI-ut3"/>
+                                                                <outlet property="keySigBG" destination="1hj-26-loM" id="1Ua-aS-Kko"/>
+                                                                <outlet property="keySignatureTextField" destination="72N-32-mKh" id="Jlh-Da-35W"/>
                                                                 <outlet property="romanNumberalTextField" destination="Moc-V6-2Hz" id="2j8-xJ-zjf"/>
                                                                 <outlet property="textField" destination="9fV-Qz-4wK" id="FB4-hc-wxP"/>
                                                             </connections>
@@ -781,7 +810,7 @@
                                     <constraint firstAttribute="width" constant="326" id="K0T-G7-g7h"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="QMM-4k-E1f">
-                                    <rect key="frame" x="1" y="825" width="359" height="16"/>
+                                    <rect key="frame" x="1" y="842" width="324" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="gUT-zb-tQX">
@@ -824,20 +853,6 @@ DQ
                                     <action selector="addChord:" target="XfG-lQ-9wD" id="c2W-wJ-umJ"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N52-Xo-NG2">
-                                <rect key="frame" x="223" y="20" width="123" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="BU4-ZJ-WxO"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Enter Chord Name" drawsBackground="YES" id="Kkz-MA-NOm">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="editingChanged:" target="XfG-lQ-9wD" id="9lD-YA-Rkg"/>
-                                </connections>
-                            </textField>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjY-rQ-UKn">
                                 <rect key="frame" x="354" y="651" width="335" height="257"/>
                                 <clipView key="contentView" id="kzR-ug-xIb">
@@ -870,10 +885,13 @@ DQ
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SH1-EH-qHk">
-                                <rect key="frame" x="102" y="21" width="113" height="19"/>
-                                <buttonCell key="cell" type="roundRect" title="MIDI Chord Entry" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Vq-gg-aG6">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
+                                <rect key="frame" x="96" y="21" width="250" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="aBs-ia-rZI"/>
+                                </constraints>
+                                <buttonCell key="cell" type="recessed" title="MIDI Chord Entry" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Vq-gg-aG6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="12"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="mWQ-D5-MMs" kind="sheet" identifier="MIDIChordEntry" id="UKW-PT-gtA"/>
@@ -944,10 +962,8 @@ DQ
                             <constraint firstItem="G67-8C-Az1" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="313" id="9Wm-8c-FPt"/>
                             <constraint firstItem="wZz-kj-QPF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="48" id="Auh-fJ-L9I"/>
                             <constraint firstItem="G67-8C-Az1" firstAttribute="leading" secondItem="ygX-Fe-J0U" secondAttribute="trailing" constant="9" id="Bg7-bh-kE1"/>
-                            <constraint firstAttribute="bottom" secondItem="N52-Xo-NG2" secondAttribute="bottom" constant="20" id="C3A-Qs-HJU"/>
-                            <constraint firstItem="N52-Xo-NG2" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="223" id="H7p-se-yeY"/>
                             <constraint firstItem="wZz-kj-QPF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="IAO-Se-EFS"/>
-                            <constraint firstItem="SH1-EH-qHk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="102" id="KDc-X7-Hhs"/>
+                            <constraint firstItem="SH1-EH-qHk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="96" id="KDc-X7-Hhs"/>
                             <constraint firstItem="bjY-rQ-UKn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="48" id="LAO-Eb-KDk"/>
                             <constraint firstAttribute="bottom" secondItem="SH1-EH-qHk" secondAttribute="bottom" constant="22" id="LIy-aj-sfq"/>
                             <constraint firstAttribute="bottom" secondItem="wZz-kj-QPF" secondAttribute="bottom" constant="49" id="MK5-Do-RLr"/>
@@ -955,14 +971,12 @@ DQ
                             <constraint firstAttribute="bottom" secondItem="itY-xn-2Jl" secondAttribute="bottom" constant="21" id="cal-2g-7vU"/>
                             <constraint firstAttribute="bottom" secondItem="ToS-xS-POE" secondAttribute="bottom" constant="21" id="erU-FE-mbN"/>
                             <constraint firstAttribute="trailing" secondItem="G67-8C-Az1" secondAttribute="trailing" constant="20" id="kFx-0x-c8M"/>
-                            <constraint firstItem="N52-Xo-NG2" firstAttribute="leading" secondItem="SH1-EH-qHk" secondAttribute="trailing" constant="8" id="lUL-um-39Y"/>
                             <constraint firstItem="itY-xn-2Jl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="tsP-kD-gnM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addChordButton" destination="itY-xn-2Jl" id="QdO-gJ-0Tc"/>
                         <outlet property="chordComboBox" destination="Da2-Py-Y6M" id="wVK-RR-8w7"/>
-                        <outlet property="chordEntryField" destination="N52-Xo-NG2" id="uZu-Lz-ovm"/>
                         <outlet property="chordTableView" destination="ygX-Fe-J0U" id="loF-DD-jJE"/>
                         <outlet property="chordTransitionsTextView" destination="thp-11-0cX" id="J7d-wJ-R7k"/>
                         <outlet property="removeChordButton" destination="ToS-xS-POE" id="HNR-cD-y7o"/>
@@ -978,11 +992,11 @@ DQ
             <objects>
                 <viewController title="MIDI Chord Entry" id="mWQ-D5-MMs" customClass="MIDIChordEntryViewController" customModule="MarkovAnalyzer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8Mh-gW-Fei">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="307"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-H5-idV">
-                                <rect key="frame" x="23" y="256" width="405" height="21"/>
+                                <rect key="frame" x="23" y="266" width="405" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Press keys on a MIDI controller to create a chord..." id="qlT-gQ-m1o">
                                     <font key="font" size="17" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1003,7 +1017,7 @@ DQ
                                 </connections>
                             </button>
                             <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JFg-yU-dpw">
-                                <rect key="frame" x="17" y="188" width="378" height="60"/>
+                                <rect key="frame" x="17" y="198" width="378" height="60"/>
                                 <view key="contentView" id="rVS-2y-WBw">
                                     <rect key="frame" x="1" y="1" width="376" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1022,8 +1036,57 @@ DQ
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FYw-dV-86Q">
-                                <rect key="frame" x="23" y="131" width="52" height="18"/>
+                                <rect key="frame" x="23" y="141" width="52" height="18"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Chord:" id="TtV-pI-YR1">
+                                    <font key="font" size="15" name=".HelveticaNeueDeskInterface-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUs-q5-XNZ">
+                                <rect key="frame" x="97" y="177" width="256" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="(Press the key again to remove the note)" id="EpF-rF-uk7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqv-mw-YEm">
+                                <rect key="frame" x="79" y="138" width="354" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Select a chord..." bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Bbe-o7-gza" id="8Ze-rv-BKU">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="4FL-Ek-CT2">
+                                        <items>
+                                            <menuItem title="Select a chord..." state="on" id="Bbe-o7-gza"/>
+                                            <menuItem title="Item 2" id="oHh-Qh-Wbh"/>
+                                            <menuItem title="Item 3" id="XYm-l2-hQ8"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="setResult:" target="mWQ-D5-MMs" id="3kK-Fk-HHh"/>
+                                </connections>
+                            </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oR-do-6Ib">
+                                <rect key="frame" x="400" y="214" width="30" height="30"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bzb-Yg-oco">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearNotes:" target="mWQ-D5-MMs" id="KeV-hC-oEt"/>
+                                </connections>
+                            </button>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YDD-e4-uZg">
+                                <rect key="frame" x="25" y="59" width="401" height="5"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wwN-9W-4qU">
+                                <rect key="frame" x="23" y="112" width="121" height="18"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Roman Numeral:" id="jeQ-xq-0Fm">
                                     <font key="font" size="15" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1042,50 +1105,9 @@ DQ
                                     <action selector="cancelEnteringChord:" target="mWQ-D5-MMs" id="IhC-5I-nMp"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUs-q5-XNZ">
-                                <rect key="frame" x="97" y="167" width="256" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="(Press the key again to remove the note)" id="EpF-rF-uk7">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqv-mw-YEm">
-                                <rect key="frame" x="79" y="128" width="354" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Custom" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Bbe-o7-gza" id="8Ze-rv-BKU">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="4FL-Ek-CT2">
-                                        <items>
-                                            <menuItem title="Custom" state="on" id="Bbe-o7-gza"/>
-                                            <menuItem title="Item 2" id="oHh-Qh-Wbh"/>
-                                            <menuItem title="Item 3" id="XYm-l2-hQ8"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="setResult:" target="mWQ-D5-MMs" id="3kK-Fk-HHh"/>
-                                </connections>
-                            </popUpButton>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-zt-lAH">
-                                <rect key="frame" x="320" y="89" width="110" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="MYo-T9-9CO">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5q-1U-cyA">
-                                <rect key="frame" x="203" y="91" width="111" height="18"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Custom Chord:" id="CBC-4h-b2x">
-                                    <font key="font" size="15" name=".HelveticaNeueDeskInterface-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NB8-C3-BuN">
-                                <rect key="frame" x="320" y="57" width="113" height="26"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="8EG-G7-XYY">
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xrs-LO-qz9">
+                                <rect key="frame" x="150" y="107" width="283" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="6Q2-eT-9DX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1095,39 +1117,49 @@ DQ
                                         <string>Item 3</string>
                                     </objectValues>
                                 </comboBoxCell>
+                                <connections>
+                                    <action selector="selectRomanNumeral:" target="mWQ-D5-MMs" id="m97-fy-Vhi"/>
+                                </connections>
                             </comboBox>
-                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UZp-Bb-YL6">
-                                <rect key="frame" x="195" y="62" width="119" height="18"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roman numeral:" id="gRV-vY-Aae">
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lP2-tW-PlF">
+                                <rect key="frame" x="137" y="79" width="296" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Select a key..." bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="iB6-R8-hNT" id="nqB-xp-XPm">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="InJ-TO-Wfh">
+                                        <items>
+                                            <menuItem title="Select a key..." state="on" id="iB6-R8-hNT"/>
+                                            <menuItem title="Item 2" id="EPu-bu-KwZ"/>
+                                            <menuItem title="Item 3" id="alq-XG-MqK"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="selectKeySig:" target="mWQ-D5-MMs" id="lEO-6h-DuK"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXj-QJ-7I6">
+                                <rect key="frame" x="23" y="82" width="110" height="18"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Key Signature: " id="4ao-47-Sq3">
                                     <font key="font" size="15" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oR-do-6Ib">
-                                <rect key="frame" x="400" y="204" width="30" height="30"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bzb-Yg-oco">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clearNotes:" target="mWQ-D5-MMs" id="KeV-hC-oEt"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="clearNotesButton" destination="1oR-do-6Ib" id="UhB-Fx-dCZ"/>
-                        <outlet property="customChordNameTextField" destination="2g9-zt-lAH" id="x4h-AL-c7N"/>
                         <outlet property="doneButton" destination="30s-Fo-wI6" id="eeL-Xo-OKq"/>
+                        <outlet property="keySigPopup" destination="lP2-tW-PlF" id="rn2-4J-Vzu"/>
                         <outlet property="notesPlayedTextField" destination="AOr-uE-l3h" id="DyI-Mq-W3H"/>
                         <outlet property="possibleChordsPopUp" destination="wqv-mw-YEm" id="snI-HN-7a4"/>
-                        <outlet property="romanNumeralComboBox" destination="NB8-C3-BuN" id="jMa-jX-p0S"/>
+                        <outlet property="romanNumeralComboBox" destination="Xrs-LO-qz9" id="72u-FL-1Oi"/>
                     </connections>
                 </viewController>
                 <customObject id="rgg-hR-gUh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="851" y="930.5"/>
+            <point key="canvasLocation" x="851" y="935.5"/>
         </scene>
     </scenes>
     <resources>

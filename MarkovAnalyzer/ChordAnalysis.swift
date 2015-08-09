@@ -23,41 +23,41 @@ class ChordAnalysis: NSObject {
     
     //  MARK: Instantiated functions
     
-    func generateChordFromNotes(var notes: [Note]) -> [Chord] {
-        var returnChords = [Chord]()
-        if notes.count > 1 {
-            notes = self.stackChordInThirds(notes)
-            
-        } else {
-            
-            for possibleNote in notes[0].enharmonicNoteNames {
-                returnChords.append(Chord(chordName: possibleNote))
-            }
-            return returnChords
-        }
-        
-        return returnChords
-    }
+//    func generateChordFromNotes(var notes: [Note]) -> [Chord] {
+//        var returnChords = [Chord]()
+//        if notes.count > 1 {
+//            notes = self.stackChordInThirds(notes)
+//            
+//        } else {
+//            
+//            for possibleNote in notes[0].enharmonicNoteNames {
+//                returnChords.append(Chord(chordName: possibleNote))
+//            }
+//            return returnChords
+//        }
+//        
+//        return returnChords
+//    }
     
-    func stackChordInThirds(var notes: [Note]) -> [Note] {
-        let thirdIntervals = [3, 4, 6, 7, 10, 11]
-        var isStackedInThirds = false
-        while !isStackedInThirds {
-            notes = notes.sort({$0.noteNumber < $1.noteNumber})
-            var intervalsChanged = false
-            for index in 1..<notes.count {
-                let interval = notes[index].noteNumber - notes[0].noteNumber
-                if !thirdIntervals.contains(interval) {
-                    notes[index].noteNumber = notes[index].noteNumber - 12
-                    intervalsChanged = true
-                }
-            }
-            if !intervalsChanged {
-                isStackedInThirds = true
-            }
-        }
-        return notes.sort({$0.noteNumber < $1.noteNumber})
-    }
+//    func stackChordInThirds(var notes: [Note]) -> [Note] {
+//        let thirdIntervals = [3, 4, 6, 7, 10, 11]
+//        var isStackedInThirds = false
+//        while !isStackedInThirds {
+//            notes = notes.sort({$0.noteNumber < $1.noteNumber})
+//            var intervalsChanged = false
+//            for index in 1..<notes.count {
+//                let interval = notes[index].noteNumber - notes[0].noteNumber
+//                if !thirdIntervals.contains(interval) {
+//                    notes[index].noteNumber = notes[index].noteNumber - 12
+//                    intervalsChanged = true
+//                }
+//            }
+//            if !intervalsChanged {
+//                isStackedInThirds = true
+//            }
+//        }
+//        return notes.sort({$0.noteNumber < $1.noteNumber})
+//    }
     
 //    private func getChordsFromNotes(notes: [Note]) -> [Chord] {
 //        var intervalList = [Int]()
@@ -68,26 +68,26 @@ class ChordAnalysis: NSObject {
 //        return []
 //    }
     
-    private func getChordForChordName(chordName: String, bassNote: Note) -> Chord {
-        
-        var bassNoteString = ""
-        if bassNote.noteName.rangeOfString(chordName) == nil {
-            bassNoteString = "/\(bassNote.noteName)"
-        }
-        return Chord(chordName: chordName + bassNoteString)
-    }
-    
-    private func getChordsForChordNames(chordNames: [String], bassNote: Note) -> [Chord] {
-        var returnChords = [Chord]()
-        for chordName in chordNames {
-            var bassNoteString = ""
-            if bassNote.noteName.rangeOfString(chordName) == nil {
-                bassNoteString = "/\(bassNote.noteName)"
-            }
-            returnChords.append(Chord(chordName: chordName + bassNoteString))
-        }
-        return returnChords
-    }
+//    private func getChordForChordName(chordName: String, bassNote: Note) -> Chord {
+//        
+//        var bassNoteString = ""
+//        if bassNote.noteName.rangeOfString(chordName) == nil {
+//            bassNoteString = "/\(bassNote.noteName)"
+//        }
+//        return Chord(chordName: chordName + bassNoteString)
+//    }
+//    
+//    private func getChordsForChordNames(chordNames: [String], bassNote: Note) -> [Chord] {
+//        var returnChords = [Chord]()
+//        for chordName in chordNames {
+//            var bassNoteString = ""
+//            if bassNote.noteName.rangeOfString(chordName) == nil {
+//                bassNoteString = "/\(bassNote.noteName)"
+//            }
+//            returnChords.append(Chord(chordName: chordName + bassNoteString))
+//        }
+//        return returnChords
+//    }
     
     private func getBassNote(notes: [Note]) -> Note {
         var lowestNote: Note!
