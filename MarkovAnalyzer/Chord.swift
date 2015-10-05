@@ -66,6 +66,12 @@ class Chord: Hashable {
         }
     }
     
+    init(chordName: String, rootNoteNumber: Int, bassNoteNumber: Int) {
+        self.chordName = chordName
+        self.root = Note(noteNumber: rootNoteNumber)
+        self.bass = Note(noteNumber: bassNoteNumber)
+    }
+    
     init() {
         self.chordConnections = [Chord: Int]()
     }

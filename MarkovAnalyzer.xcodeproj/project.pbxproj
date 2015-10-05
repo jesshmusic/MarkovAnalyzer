@@ -17,6 +17,10 @@
 		D74006321B62C22900EADF56 /* MusicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740062C1B62C22900EADF56 /* MusicConstants.swift */; };
 		D74006341B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */; };
 		D74006351B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */; };
+		D7591B161B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7591B151B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift */; };
+		D7591B171B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7591B151B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift */; };
+		D7903D641BC2AC0600B79866 /* KeySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7903D631BC2AC0600B79866 /* KeySignature.swift */; settings = {ASSET_TAGS = (); }; };
+		D7903D651BC2AC0600B79866 /* KeySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7903D631BC2AC0600B79866 /* KeySignature.swift */; settings = {ASSET_TAGS = (); }; };
 		D7D897FB1B658CAD00BD104D /* MIDIChordEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574BD1B651D4700608D93 /* MIDIChordEntryViewController.swift */; };
 		D7E574B01B640F9E00608D93 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574AF1B640F9E00608D93 /* MIDIManager.swift */; };
 		D7E574B21B64195800608D93 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E574AF1B640F9E00608D93 /* MIDIManager.swift */; };
@@ -49,6 +53,8 @@
 		D740062B1B62C22900EADF56 /* MarkovGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkovGraph.swift; sourceTree = "<group>"; };
 		D740062C1B62C22900EADF56 /* MusicConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicConstants.swift; sourceTree = "<group>"; };
 		D74006331B62C2AA00EADF56 /* ChordEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordEntryViewController.swift; sourceTree = "<group>"; };
+		D7591B151B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomanNumeralAnalysis.swift; sourceTree = "<group>"; };
+		D7903D631BC2AC0600B79866 /* KeySignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySignature.swift; sourceTree = "<group>"; };
 		D7E574AF1B640F9E00608D93 /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
 		D7E574B11B64194100608D93 /* MarkovAn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MarkovAn-Bridging-Header.h"; sourceTree = "<group>"; };
 		D7E574B71B65107800608D93 /* 32MbGMStereo.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 32MbGMStereo.sf2; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 				E1227B6C1B0E38170026CB4F /* ViewController.swift */,
 				D7E574BD1B651D4700608D93 /* MIDIChordEntryViewController.swift */,
 				D740062A1B62C22900EADF56 /* Chord.swift */,
+				D7591B151B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift */,
 				D722713B1B68066200C64DC3 /* Note.swift */,
 				D7F0F1861B63BEB00042F5D7 /* ChordAnalysis.swift */,
 				D740062B1B62C22900EADF56 /* MarkovGraph.swift */,
@@ -129,6 +136,7 @@
 				E1227B6E1B0E38170026CB4F /* Images.xcassets */,
 				E1227B701B0E38170026CB4F /* Main.storyboard */,
 				E1227B681B0E38170026CB4F /* Supporting Files */,
+				D7903D631BC2AC0600B79866 /* KeySignature.swift */,
 			);
 			path = MarkovAnalyzer;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 				TargetAttributes = {
 					E1227B641B0E38170026CB4F = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = AUB9XW4722;
 					};
 					E1227B761B0E38170026CB4F = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -261,8 +270,10 @@
 			files = (
 				D74006341B62C2AA00EADF56 /* ChordEntryViewController.swift in Sources */,
 				D740062D1B62C22900EADF56 /* Chord.swift in Sources */,
+				D7591B161B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift in Sources */,
 				D7E574B01B640F9E00608D93 /* MIDIManager.swift in Sources */,
 				D7E574BE1B651D4700608D93 /* MIDIChordEntryViewController.swift in Sources */,
+				D7903D641BC2AC0600B79866 /* KeySignature.swift in Sources */,
 				D74006311B62C22900EADF56 /* MusicConstants.swift in Sources */,
 				E1227B6D1B0E38170026CB4F /* ViewController.swift in Sources */,
 				D7F0F1871B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */,
@@ -281,6 +292,8 @@
 				D7EC0A121B6567DA00391736 /* ChordCellView.swift in Sources */,
 				D740062E1B62C22900EADF56 /* Chord.swift in Sources */,
 				D7D897FB1B658CAD00BD104D /* MIDIChordEntryViewController.swift in Sources */,
+				D7903D651BC2AC0600B79866 /* KeySignature.swift in Sources */,
+				D7591B171B88DDDF00CD2F0B /* RomanNumeralAnalysis.swift in Sources */,
 				D74006321B62C22900EADF56 /* MusicConstants.swift in Sources */,
 				D722713D1B68066200C64DC3 /* Note.swift in Sources */,
 				D7F0F1881B63BEB00042F5D7 /* ChordAnalysis.swift in Sources */,
@@ -398,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MarkovAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -413,6 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MarkovAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

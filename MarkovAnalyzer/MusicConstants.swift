@@ -10,20 +10,20 @@
 import Foundation
 
 
-struct KeySignature: Hashable {
-    var keyName: String!
-    
-    init(keyName: String) {
-        self.keyName = keyName
-    }
-    
-    var hashValue: Int {
-        return self.keyName.hashValue
-    }
-}
-func == (keyA: KeySignature, keyB: KeySignature) -> Bool {
-    return keyA.keyName == keyB.keyName
-}
+//struct KeySignature: Hashable {
+//    var keyName: String!
+//    
+//    init(keyName: String) {
+//        self.keyName = keyName
+//    }
+//    
+//    var hashValue: Int {
+//        return self.keyName.hashValue
+//    }
+//}
+//func == (keyA: KeySignature, keyB: KeySignature) -> Bool {
+//    return keyA.keyName == keyB.keyName
+//}
 
 struct Harmony {
     var romanNumeral: String!

@@ -210,11 +210,11 @@ class MIDIManager: NSObject {
         for _ in 0 ..< packets.numPackets {
             
             let p = ap.memory
-            print("timestamp \(p.timeStamp)", appendNewline:false)
+            print("timestamp \(p.timeStamp)", terminator: "")
             var hex = String(format:"0x%X", p.data.0)
-            print(" \(hex)", appendNewline:false)
+            print(" \(hex)", terminator: "")
             hex = String(format:"0x%X", p.data.1)
-            print(" \(hex)", appendNewline:false)
+            print(" \(hex)", terminator: "")
             hex = String(format:"0x%X", p.data.2)
             print(" \(hex)")
             
@@ -497,19 +497,19 @@ class MIDIManager: NSObject {
         //https://developer.apple.com/library/prerelease/ios/documentation/AudioToolbox/Reference/AUGraphServicesReference/index.html#//apple_ref/c/func/AUGraphIsInitialized
         
         var status = OSStatus(noErr)
-        var outIsInitialized:Boolean = 0
+        var outIsInitialized:DarwinBoolean = false
         status = AUGraphIsInitialized(self.processingGraph, &outIsInitialized)
         print("isinit status is \(status)")
         print("bool is \(outIsInitialized)")
-        if outIsInitialized == 0 {
+        if outIsInitialized == false {
             status = AUGraphInitialize(self.processingGraph)
             CheckError(status)
         }
         
-        var isRunning = Boolean(0)
+        var isRunning = DarwinBoolean(false)
         AUGraphIsRunning(self.processingGraph, &isRunning)
         print("running bool is \(isRunning)")
-        if isRunning == 0 {
+        if isRunning == false {
             status = AUGraphStart(self.processingGraph)
             CheckError(status)
         }
